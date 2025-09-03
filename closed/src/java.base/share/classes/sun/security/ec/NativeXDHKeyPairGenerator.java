@@ -25,7 +25,7 @@
 
 /*
  * ===========================================================================
- * (c) Copyright IBM Corp. 2023, 2023 All Rights Reserved
+ * (c) Copyright IBM Corp. 2023, 2025 All Rights Reserved
  * ===========================================================================
  */
 
@@ -211,7 +211,7 @@ public class NativeXDHKeyPairGenerator extends KeyPairGeneratorSpi {
      * Initializes the java implementation.
      * Already set parameters are used to specify the curve type.
      */
-    private void initializeJavaImplementation() {
+    private synchronized void initializeJavaImplementation() {
         if (javaImplementation == null) {
             if (lockedParams == null) {
                 javaImplementation = new XDHKeyPairGenerator();
