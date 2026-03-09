@@ -37,7 +37,7 @@ import jdk.test.lib.process.ProcessTools;
 public class TestFIPSMode {
 
     private static void getFIPSMode() throws Exception {
-        String s = Security.getFIPSmode();
+        String s = Security.getProperty("com.ibm.fips.mode");
         System.out.println("FIPS mode: " + s);
     }
 
@@ -45,7 +45,7 @@ public class TestFIPSMode {
     public void FIPSModeEnabledProfile1() throws Exception {
         OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJava(
                 "-Dsemeru.fips=true",
-                "-Dsemeru.customprofile=FIPSEnabled140-2.Version",
+                "-Dsemeru.customprofile=TestGetFIPSMode.FIPSEnabled140-2",
                 "-Djava.security.properties=" + System.getProperty("test.src") + "/fipsmode-java.security",
                 "TestFIPSMode"
         );
@@ -58,7 +58,7 @@ public class TestFIPSMode {
     public void FIPSModeEnabledProfile2() throws Exception {
         OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJava(
                 "-Dsemeru.fips=true",
-                "-Dsemeru.customprofile=FIPSEnabled140-3.Version",
+                "-Dsemeru.customprofile=TestGetFIPSMode.FIPSEnabled140-3",
                 "-Djava.security.properties=" + System.getProperty("test.src") + "/fipsmode-java.security",
                 "TestFIPSMode"
         );
@@ -70,7 +70,7 @@ public class TestFIPSMode {
     @Test
     public void FIPSDisabledMode() throws Exception {
         OutputAnalyzer outputAnalyzer = ProcessTools.executeTestJava(
-                "-Dsemeru.customprofile=FIPSDisabled.Version",
+                "-Dsemeru.customprofile=TestGetFIPSMode.FIPSDisabled",
                 "-Djava.security.properties=" + System.getProperty("test.src") + "/fipsmode-java.security",
                 "TestFIPSMode"
         );
