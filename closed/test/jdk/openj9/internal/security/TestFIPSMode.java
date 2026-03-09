@@ -37,7 +37,7 @@ import jdk.test.lib.process.ProcessTools;
 public class TestFIPSMode {
 
     private static void getFIPSMode() throws Exception {
-        String s = Security.getProperty("com.ibm.fips.mode");
+        String s = Security.getFIPSmode();
         System.out.println("FIPS mode: " + s);
     }
 

@@ -248,6 +248,14 @@ public final class RestrictedSecurity {
         return securityEnabled && isFIPSEnabled;
     }
 
+    public static String getFIPSmode() {
+        if (isFIPSEnabled()) {
+            return restricts.jdkFipsMode;
+        }
+
+        return null;
+    }
+
     /**
      * Check if the FIPS 140-2 mode is enabled.
      *
