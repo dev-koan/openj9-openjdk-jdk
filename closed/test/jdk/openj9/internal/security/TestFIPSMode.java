@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 public class TestFIPSMode {
 
     private static void getFIPSMode() throws Exception {
-        String s = System.getProperty("com.ibm.fips.mode");
+        String s = Security.getProperty("com.ibm.fips.mode");
         System.out.println("FIPS mode: " + s);
     }
 
