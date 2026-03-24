@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -914,8 +915,22 @@ public final class Security {
      * @see #setProperty
      */
     public static String getProperty(String key) {
-        SecPropLoader.checkReservedKey(key);
-        String name = props.getProperty(key);
+        // initialize();
+        String name = null;
+        if (key.equals("com.ibm.fips.mode")) {
+            Enumeration<?> keys = props.propertyNames();
+            while (keys.hasMoreElements()) {
+                String propKey = (String) keys.nextElement();
+                if (propKey.endsWith("fips.mode")) {
+                    SecPropLoader.checkReservedKey(propKey);
+                    name = props.getProperty(propKey);
+                    break;
+                }
+            }
+        } else {
+            SecPropLoader.checkReservedKey(key);
+            name = props.getProperty(key);
+        }
         if (name != null)
             name = name.trim(); // could be a class name with trailing ws
         return name;
