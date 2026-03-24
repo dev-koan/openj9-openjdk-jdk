@@ -914,6 +914,9 @@ public final class Security {
      * @see #setProperty
      */
     public static String getProperty(String key) {
+        // Ensure the Security and Restricted Security class is loaded and initialized.
+        Security.getProviders();
+    
         SecPropLoader.checkReservedKey(key);
         String name = props.getProperty(key);
         if (name != null)
