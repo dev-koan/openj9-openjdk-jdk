@@ -93,6 +93,7 @@ public class TestFIPSMode {
     }
 
     public static void main(String[] args) throws Exception {
+        Security.getProviders();
         getFIPSMode();
     }
 }
