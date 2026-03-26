@@ -915,18 +915,9 @@ public final class Security {
      * @see #setProperty
      */
     public static String getProperty(String key) {
-        // initialize();
         String name = null;
         if (key.equals("com.ibm.fips.mode")) {
-            Enumeration<?> keys = props.propertyNames();
-            while (keys.hasMoreElements()) {
-                String propKey = (String) keys.nextElement();
-                if (propKey.endsWith("fips.mode")) {
-                    SecPropLoader.checkReservedKey(propKey);
-                    name = props.getProperty(propKey);
-                    break;
-                }
-            }
+            name = System.getProperty(key);
         } else {
             SecPropLoader.checkReservedKey(key);
             name = props.getProperty(key);
